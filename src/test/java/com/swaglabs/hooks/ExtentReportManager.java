@@ -10,7 +10,6 @@ public class ExtentReportManager {
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
-    // بتجهز الـ report
     public static ExtentReports getInstance() {
         if (extent == null) {
             ExtentSparkReporter spark = new ExtentSparkReporter(
@@ -28,17 +27,14 @@ public class ExtentReportManager {
         return extent;
     }
 
-    // بتجيب الـ test الحالي
     public static ExtentTest getTest() {
         return test.get();
     }
 
-    // بتحط الـ test الحالي
     public static void setTest(ExtentTest extentTest) {
         test.set(extentTest);
     }
 
-    // بتحفظ الـ report
     public static void flushReport() {
         if (extent != null) {
             extent.flush();
